@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+ 
+</head>
+
+<body>
+
+  <h1>cat simulator</h1>
+  <div id='new-cat'>
+    <p>create a new cat</p>
+    <button onclick="document.getElementById('catname-form').style.display='block'"style='font-size: 20px; font-weight: bold' >New Cat</button>
+    <!--CAT NAME-->
+    <div id='catname-form' class='modal'>
+      <form class='modal-content animate' form action="#" onsubmit="confirm("as")">
+        <div class="imgcontainer">
+          <span onclick="document.getElementById('catname-form').style.display='none'" class="close" title="Close Modal">&times;</span>
+          <img src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/19456/cat-s-paw-clipart-md.png">
+          <h1 style="color: green">Enter your cat's name!</h1>
+        </div>
+        <input type="text" name="catname" id="catname">
+      </form>
+    </div>
+  </div>
+  <!--CAT NAME-->
+  <div class='modal-content animate' id='thank-you' style='display: none'>
+    <p>Thank you and enjoy!!</p>
+       </div>
+
+<div id='game'>
+  <p>Your cat's jname is </p>
+
+<input type="image" src='https://tikipets.com/wp-content/uploads/2017/11/Tiki-Cat-Born-Carnivore-Chicken-Fish-Luau-2.8-lb.-1.png'  onclick="eat()" name="eat" class='button'>
+  <p id='food-eaten'></p> 
+  
+  
+  
+  
+  
+  </div>
+</body>
+<script>
+document.getElementsByTagName("h1")[0].style.fontSize = "6vw";
+var eatCount = 0;
+class Cat {
+  constructor(name) {
+    this.name = name;
+    this.health = 100;
+  }
+}
+createNewCat = () => {
+  var userCat = new Cat(document.getElementById("catname").value);
+  document.getElementById("game").getElementsByTagName("P")[0].innerHTML +=
+    userCat.name + ".";
+  document.getElementById("catname-form").style.display = "none";
+  document.getElementById("new-cat").style.display = "none";
+  document.getElementById("thank-you").style.display = "block";
+  setTimeout(function () {
+    document.getElementById("thank-you").style.transform = "scale(0)";
+    setTimeout(function () {
+      document.getElementById("thank-you").style.display = "none";
+      document.getElementById("game").style.display = "block";
+    }, 1000);
+  }, 3000);
+};
+var catname = document.getElementById("catname");
+catname.addEventListener("keypress", function (e) {
+  if (e.keyCode == 13) {
+    e.preventDefault();
+    createNewCat();
+  }
+});
+eat = () => {
+  eatCount += 1;
+  document.getElementById("food-eaten").innerHTML = "Food eaten:  " + eatCount;
+};
+
+</script>
+</html>
